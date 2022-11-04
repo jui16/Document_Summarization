@@ -9,14 +9,16 @@ import pandas as pd
 
 app = Flask(__name__)
 
-
 def get_content_from_pdf(url):
+   text_string = ""
    req_obj = requests.get(url)
    f = io.BytesIO(req_obj.content)
    reader = ppf.PdfFileReader(f)
-   contents = reader.getPage(0).extractText().split('\n')
-   print(contents)
-   return "success"
+   for i in range(reader.numPages):
+    current_page = reader.getPage(i)
+    extracted_text = current_page.extractText()
+    text_string = text_string + extracted_text
+   return text_string
 
 def get_wiki_content(url):
    req_obj = requests.get(url)
@@ -72,3 +74,5 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+    
