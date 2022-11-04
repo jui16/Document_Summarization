@@ -32,7 +32,10 @@ def get_wiki_content(url):
 
 
 def top10_sent(url):
-    required_text = get_wiki_content(url)
+    if '.pdf' in url:
+        required_text = get_content_from_pdf(url)
+    else:
+        required_text = get_wiki_content(url)
     stopwords = nltk.corpus.stopwords.words("english")
     sentences = nltk.sent_tokenize(required_text)
     words = nltk.word_tokenize(required_text)
