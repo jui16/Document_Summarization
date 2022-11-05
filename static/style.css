@@ -1,22 +1,64 @@
-body{
-    background-color:brown;
+body {
+    margin: 6rem;
+    background-color: #06283D;
 }
 
-.upload-file {
+h1{
     text-align: center;
-    padding: 20px;
-    margin: 2%;
-    font-size: 1.5rem;
+    color: white;
+    
+}
+
+.upload {
+    text-align: center;
+    padding: 2rem;
+    margin: 4rem;
+    font-size: 1.2rem;
     border: 1px ridge grey;
-    box-shadow: 5px 10px gainsboro;
+    /* box-shadow: 5px 10px gainsboro; */
+    background-color: #DFF6FF;
     
 }
 
 .url_box {
-    width: 50%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid grey;
+
 }
 
-.field, .btn {
+.field {
     font-size: 1rem;
+    font-family: 'Alice', serif;
 }
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    margin: 1.5rem;
+    background-color: #06283D;
+    color: #FFFFFF;
+    border: 1px #FFFFFF;
+    border-radius: 2px;
+    
+}
+button:hover{
+    border-color: white;
+    cursor: pointer;
+    box-shadow: 0 1em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+      
+    
+    }
+
+
+    
