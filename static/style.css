@@ -91,13 +91,15 @@ button:hover{
 }
 .left {
     left: 0;
-    background-color: #43e97b;
+    /*background-color: #43e97b;*/
+    background-color: #D3D3D3;
   }
   
 
   .right {
     right: 0;
-    background-color: #38f9d7;
+    /*background-color: #38f9d7;*/
+    background-color: #7EA8B4;
   }
   
   .centered {
