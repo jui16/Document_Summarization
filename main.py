@@ -66,14 +66,14 @@ def top10_sent(url):
     top10_rows = sorted_data.iloc[0:11,:]
     
     #top_10 = list(sentences_data.sort_values(by = "score",ascending = False).reset_index().iloc[0:11,"sentences"])
-    return " ".join(list(top10_rows["sent"]))
+    return (" ".join(list(top10_rows["sent"])), required_text)
 
 @app.route("/", methods = ["GET", "POST"])
 def index():
    if request.method == "POST":
       url = request.form["url"]
       url_content = top10_sent(url)
-      return url_content
+      return render_template("result.html",final_summary = url_content[0], original_text = url_content[1])
    return render_template("index.html")
 
 if __name__ == "__main__":

@@ -1,11 +1,25 @@
 body {
     margin: 6rem;
-    background-color: #06283D;
+    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+
+    
+}
+
+
+.wrapper {
+    /* background-color: aqua; */
+    margin: 0;
+    width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 h1{
     text-align: center;
-    color: white;
+    color: black;
     
 }
 
@@ -51,14 +65,46 @@ button {
     border-radius: 2px;
     
 }
+
 button:hover{
     border-color: white;
     cursor: pointer;
     box-shadow: 0 1em 0.5em -0.4em var(--hover);
     transform: translateY(-0.25em);
-      
-    
+       
     }
 
 
-    
+.result {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.result h1{
+    color: black;
+    padding-top: 30px;
+}
+.left {
+    left: 0;
+    background-color: #43e97b;
+  }
+  
+
+  .right {
+    right: 0;
+    background-color: #38f9d7;
+  }
+  
+  .centered {
+    position: absolute;
+    padding: 70px;
+    text-align: justify;
+  }
+  
+  
+ 

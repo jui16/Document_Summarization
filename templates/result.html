@@ -11,17 +11,23 @@
 </head>
 
 <body>
-    <div class="wrapper">
-    <H1>SUMMERIFY: A DOCUMENT SUMMARIZER</H1>
+    <H1>SUMMARY</H1>
     <div class="upload">
         <form method="POST">
-            <p class="field">Enter URL (PDF or Article) : </p>
-            <div class="container">
-            <input class="url_box" type="text" name="url" id ="url">  
-            <button type = "submit" id = "Submit">Submit</button>
+            <div class="result left">
+                <H1>ORIGINAL DOCUMENT TEXT</H1>
+                <div class="centered">
+                {{original_text}}
+            </div>
         </div>
+            <div class="result right">
+                <H1>SUMMARY</H1>
+                <div class="centered">
+                {{final_summary}}
+            </div>
+            </div>
+    </div>
         </form>
         </div>
-    </div>
 </body>
 </html>
