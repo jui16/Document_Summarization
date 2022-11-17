@@ -5,6 +5,7 @@ import nltk
 import io
 import PyPDF2 as ppf
 import pandas as pd
+import re
 
 app = Flask(__name__)
 
@@ -33,12 +34,12 @@ def get_wiki_content(url):
 
 def top10_sent(url):
     if '.pdf' in url:
-        required_text = get_content_from_pdf(url)
+        og_text = get_content_from_pdf(url)
     else:
-        required_text = get_wiki_content(url)
+        og_text = get_wiki_content(url)
     stopwords = nltk.corpus.stopwords.words("english")
-    sentences = nltk.sent_tokenize(required_text)
-    words = nltk.word_tokenize(required_text)
+    sentences = nltk.sent_tokenize(og_text)
+    words = nltk.word_tokenize(og_text)
     word_freq = {}
     for word in words:
         if word not in stopwords:
@@ -63,17 +64,25 @@ def top10_sent(url):
     sentences_data = pd.DataFrame({"sent":sentences, "score":sentences_score})
     sorted_data = sentences_data.sort_values(by = "score", ascending = False).reset_index()
 
-    top10_rows = sorted_data.iloc[0:11,:]
+    get_summary = sorted_data.iloc[0:11,:]
     
     #top_10 = list(sentences_data.sort_values(by = "score",ascending = False).reset_index().iloc[0:11,"sentences"])
-    return (" ".join(list(top10_rows["sent"])), required_text)
+    return (" ".join(list(get_summary["sent"])), og_text)
+
+def remove_citation(summary_doc):
+    text_after_removing_citation = re.sub("[\[].*?[\]]", '', summary_doc)
+    summary_after_removing_citation = text_after_removing_citation.strip()
+    return summary_after_removing_citation
+    
 
 @app.route("/", methods = ["GET", "POST"])
 def index():
    if request.method == "POST":
       url = request.form["url"]
       url_content = top10_sent(url)
-      return render_template("result.html",final_summary = url_content[0], original_text = url_content[1])
+      content_for_removing_citations = url_content[0]
+      summary_without_citation = remove_citation(content_for_removing_citations)
+      return render_template("result.html",final_summary = summary_without_citation, original_text = url_content[1])
    return render_template("index.html")
 
 if __name__ == "__main__":
